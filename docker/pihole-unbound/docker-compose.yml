@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - '53:53/tcp'
+      - '53:53/udp'
+      - '67:67/udp'
+      - '80:80/tcp'
+      - '443:443/tcp'
+    environment:
+      TZ: 'YOUR_TIMEZONE'
+      WEBPASSWORD: 'YOUR_PIHOLE_ADMIN_PASSWORD'
+      DNS1: '127.0.0.1#5053' # Points to Unbound
+      DNS2: 'no'
+    volumes:
+      - './etc-pihole/:/etc/pihole/'
+      - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+    restart: unless-stopped
+
+  unbound:
+    container_name: unbound
+    image: mvance/unbound:latest
+    volumes:
+      - './unbound/:/opt/unbound/etc/unbound/'
+    ports:
+      - '5053:5053/udp'
+      - '5053:5053/tcp'
+    restart: unless-stopped
