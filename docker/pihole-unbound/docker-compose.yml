@@ -11,8 +11,8 @@ services:
       - '80:80/tcp'
       - '443:443/tcp'
     environment:
-      TZ: 'YOUR_TIMEZONE'
-      WEBPASSWORD: 'YOUR_PIHOLE_ADMIN_PASSWORD'
+      TZ: 'America/Los_Angeles'
+      WEBPASSWORD: '${PIHOLE_WEBPASSWORD}'
       DNS1: '127.0.0.1#5053' # Points to Unbound
       DNS2: 'no'
     volumes:
