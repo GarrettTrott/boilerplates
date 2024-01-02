@@ -18,6 +18,7 @@ services:
     environment:
       TZ: 'America/Los_Angeles'
       WEBPASSWORD: '${PIHOLE_WEBPASSWORD}'
+      WEBTHEME: 'default-dark'
       DNS1: '127.0.0.1#5053' # Points to Unbound
       DNS2: 'no'
     volumes:
