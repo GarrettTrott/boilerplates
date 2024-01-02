@@ -4,6 +4,11 @@ services:
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.unique_label == ${PIHOLE_NODE_LABEL}
     ports:
       - '53:53/tcp'
       - '53:53/udp'
@@ -23,6 +28,12 @@ services:
   unbound:
     container_name: unbound
     image: mvance/unbound:latest
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.unique_label == ${PIHOLE_NODE_LABEL}
+    ports:
     volumes:
       - './unbound/:/opt/unbound/etc/unbound/'
     ports:
