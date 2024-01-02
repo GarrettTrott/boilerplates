@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 
 services:
   pihole:
@@ -19,7 +19,7 @@ services:
       TZ: 'America/Los_Angeles'
       WEBPASSWORD: '${PIHOLE_WEBPASSWORD}'
       WEBTHEME: 'default-dark'
-      DNS1: '127.0.0.1#5053' # Points to Unbound
+      DNS1: '127.0.0.1#5335' # Points to Unbound
       DNS2: 'no'
     volumes:
       - './etc-pihole/:/etc/pihole/'
@@ -38,6 +38,6 @@ services:
     volumes:
       - './unbound/:/opt/unbound/etc/unbound/'
     ports:
-      - '5053:5053/udp'
-      - '5053:5053/tcp'
+      - '5335:53/udp'
+      - '5335:53/tcp'
     restart: unless-stopped
