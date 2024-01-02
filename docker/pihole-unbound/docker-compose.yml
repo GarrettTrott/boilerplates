@@ -1,5 +1,4 @@
 version: '3.9'
-
 services:
   pihole:
     container_name: pihole
@@ -34,7 +33,6 @@ services:
       placement:
         constraints:
           - node.labels.unique_label == ${PIHOLE_NODE_LABEL}
-    ports:
     volumes:
       - './unbound/:/opt/unbound/etc/unbound/'
     ports:
